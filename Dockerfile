@@ -1,8 +1,9 @@
 FROM node:20-alpine
 RUN apk add --no-cache bash openssl curl git
-RUN npm install -g openclaw
 WORKDIR /app
-COPY start.sh /app/start.sh
+COPY package.json start.sh /app/
+RUN npm install
 RUN chmod +x /app/start.sh
+ENV PATH /app/node_modules/.bin:$PATH
 EXPOSE 18789
-CMD ["/bin/bash", "/app/start.sh"]
+CMD ["npm", "start"]
