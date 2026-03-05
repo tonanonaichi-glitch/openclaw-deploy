@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-# Railwayのメモリ不足対策
-export NODE_OPTIONS="--max-old-space-size=256"
+# Railwayのメモリ不足対策: 500MB環境に合わせ400MBに設定
+export NODE_OPTIONS="--max-old-space-size=400"
 
 echo "OpenClaw Startup Script"
 if [ -z "$SLACK_APP_TOKEN" ] || [ -z "$SLACK_BOT_TOKEN" ] || [ -z "$OPENAI_API_KEY" ]; then
@@ -44,4 +44,4 @@ cat <<JSONEOF > ~/.openclaw/openclaw.json
 JSONEOF
 
 echo "Starting Gateway..."
-exec npx openclaw gateway
+exec npx openclaw gateway --allow-unconfigured
