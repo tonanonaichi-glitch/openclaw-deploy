@@ -1,5 +1,5 @@
-FROM node:22
-RUN apt-get update && apt-get install -y --no-install-recommends bash openssl curl git python3 make g++ build-essential
+FROM node:22-bookworm
+RUN apt-get update && apt-get install -y --no-install-recommends bash openssl curl git python3 make g++ build-essential cmake
 WORKDIR /app
 COPY package.json start.sh /app/
 RUN npm install
